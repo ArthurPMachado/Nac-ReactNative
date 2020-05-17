@@ -6,8 +6,11 @@ export default class Usuario extends Component {
       super(props);
       
       this.state = {
-        first_name: '',
-        last_name: '',
+        id: 0,
+        email: '',
+        primeiro_nome: '',
+        ultimo_nome: '',
+        imagem: ''
       };
   }
 
@@ -20,11 +23,19 @@ export default class Usuario extends Component {
     .then(item => item.json())
     .then((item) => {
 
+      var id = item['data']['id']
+      var email = item['data']['email']
       var primeiro_nome = item['data']['first_name']
       var ultimo_nome = item['data']['last_name']
+      var imagem = item['data']['avatar']
 
-      this.setState({first_name: primeiro_nome,
-                  last_name: ultimo_nome})
+      this.setState({
+        id: id,
+        email: email,
+        primeiro_nome: primeiro_nome,
+        ultimo_nome: ultimo_nome,
+        imagem: imagem
+      })
 
     })
     .catch(error => console.log(error)) 
@@ -33,10 +44,10 @@ export default class Usuario extends Component {
   render() {
     return(
       <View>
-        <Image>a imagem do usuario</Image>
-        <Text>id do usuario</Text>
-        <Text>email do usuario</Text>
-        <Text>nome do usuario</Text>
+        <Image source={{uri:this.state.imagem}}> </Image>
+        <Text>{this.state.id}</Text>
+        <Text>{this.state.email}</Text>
+        <Text>{this.state.primeiro_nome} {this.state.ultimo_nome}</Text>
       </View>
     )
   }
