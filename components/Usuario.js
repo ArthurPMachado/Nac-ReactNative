@@ -36,15 +36,18 @@ export default class Usuario extends Component {
         ultimo_nome: ultimo_nome,
         imagem: imagem
       })
-
     })
-    .catch(error => console.log(error)) 
+    .catch(error => console.log(error))
   }
 
   render() {
     return(
       <View>
-        <Image source={{uri:this.state.imagem}}> </Image>
+        <Image source={{uri:this.state.imagem}}
+               style={{width: '100%',
+                       height: 250,
+                       resizeMode:'contain',
+                       justifyContent:'center'}}/>
         <Text>{this.state.id}</Text>
         <Text>{this.state.email}</Text>
         <Text>{this.state.primeiro_nome} {this.state.ultimo_nome}</Text>
